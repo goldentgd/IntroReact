@@ -1,4 +1,5 @@
 import Tarjeta from './Tarjeta';
+import './App.css'
 
 function App() {
   return (
