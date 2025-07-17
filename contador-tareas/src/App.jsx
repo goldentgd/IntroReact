@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import './App.css' // Importa tu archivo CSS
+import './App.css'
 
 function App () {
   const [tareas, setTareas] = useState([])
@@ -7,7 +7,6 @@ function App () {
   const [duracion, setDuracion] = useState('')
   const [filtroDuracion, setFiltroDuracion] = useState('')
 
-  // Cargar tareas desde localStorage cuando se monta el componente
   useEffect(() => {
     const tareasGuardadas = localStorage.getItem('tareas')
     if (tareasGuardadas) {
@@ -15,7 +14,6 @@ function App () {
     }
   }, [])
 
-  // Guardar tareas en localStorage cada vez que cambian
   useEffect(() => {
     localStorage.setItem('tareas', JSON.stringify(tareas))
   }, [tareas])
