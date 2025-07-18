@@ -1,0 +1,45 @@
+body {
+  background: #000;
+  color: #0ff;
+  font-family: 'Courier New', Courier, monospace;
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+}
+
+.panel {
+  background: #111;
+  border: 2px solid #0ff;
+  border-radius: 10px;
+  padding: 30px;
+  max-width: 600px;
+}
+
+.info p {
+  margin: 8px 0;
+}
+
+button {
+  background: #0ff;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: #0cc;
+}
+
+.planetas {
+  margin-top: 20px;
+}
+
+.planeta {
+  background: #022;
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+}
