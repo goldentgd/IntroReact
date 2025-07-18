@@ -1,35 +1,106 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect, useRef } from 'react';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [planetas, setPlanetas] = useState(
+    JSON.parse(localStorage.getItem('planetas')) || []
+  );
+  const [nombre, setNombre] = useState('');
+  const [descripcion, setDescripcion] = useState('');
+  const [imagen, setImagen] = useState(null);
+  const [editIndex, setEditIndex] = useState(null);
+  const inputImagenRef = useRef(null);
+
+  useEffect(() => {
+    localStorage.setItem('planetas', JSON.stringify(planetas));
+  }, [planetas]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const nuevoPlaneta = {
+      nombre,
+      descripcion,
+      imagen: imagen ? URL.createObjectURL(imagen) : null,
+    };
+
+    if (editIndex !== null) {
+      const copia = [...planetas];
+      copia[editIndex] = nuevoPlaneta;
+      setPlanetas(copia);
+      setEditIndex(null);
+    } else {
+      setPlanetas([...planetas, nuevoPlaneta]);
+    }
+
+    setNombre('');
+    setDescripcion('');
+    setImagen(null);
+    if (inputImagenRef.current) {
+      inputImagenRef.current.value = '';
+    }
+  };
+
+  const handleDelete = (index) => {
+    const copia = [...planetas];
+    copia.splice(index, 1);
+    setPlanetas(copia);
+  };
+
+  const handleEdit = (index) => {
+    const planeta = planetas[index];
+    setNombre(planeta.nombre);
+    setDescripcion(planeta.descripcion);
+    setImagen(null);
+    setEditIndex(index);
+    if (inputImagenRef.current) {
+      inputImagenRef.current.value = '';
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="bitacora">
+      <h1>📔 Bitácora de Exploración</h1>
+
+      <form onSubmit={handleSubmit} className="formulario">
+        <input
+          type="text"
+          placeholder="Nombre del planeta"
+          value={nombre}
+          onChange={(e) => setNombre(e.target.value)}
+          required
+        />
+        <textarea
+          placeholder="Descripción"
+          value={descripcion}
+          onChange={(e) => setDescripcion(e.target.value)}
+          required
+        />
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => setImagen(e.target.files[0])}
+          ref={inputImagenRef}
+        />
+        <button type="submit">{editIndex !== null ? "Actualizar" : "Guardar"}</button>
+      </form>
+
+      <h2>Planetas Registrados</h2>
+      <div className="planetas">
+        {planetas.map((planeta, index) => (
+          <div key={index} className="planeta-card">
+            <h3>{planeta.nombre}</h3>
+            <p>{planeta.descripcion}</p>
+            {planeta.imagen && <img src={planeta.imagen} alt={planeta.nombre} />}
+            <div className="acciones">
+              <button onClick={() => handleEdit(index)}>Editar</button>
+              <button onClick={() => handleDelete(index)}>Eliminar</button>
+            </div>
+          </div>
+        ))}
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
