@@ -12,8 +12,8 @@ function reducer(state, action) {
       };
     case "decrement":
       return { 
-        count: state.count - 1, 
-        history: [...state.history, `-1 (Nuevo valor: ${state.count - 1})`] 
+        count: state.count - action.payload, 
+        history: [...state.history, `-${action.payload} (Nuevo valor: ${state.count - action.payload})`] 
       };
     case "reset":
       return { count: 0, history: [] };
@@ -55,8 +55,8 @@ function CounterGame() {
   }, [incrementValue]);
 
   const handleDecrement = useCallback(() => {
-    dispatch({ type: "decrement" });
-  }, []);
+    dispatch({ type: "decrement", payload: parseInt(incrementValue) || 1 });
+  }, [incrementValue]);
 
   return (
     <div>
