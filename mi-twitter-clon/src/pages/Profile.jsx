@@ -1,4 +1,3 @@
-// Profile.js
 const Profile = ({ user }) => {
   return (
     <div>

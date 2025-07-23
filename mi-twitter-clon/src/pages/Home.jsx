@@ -28,7 +28,7 @@ const Home = ({ user, logout }) => {
       {user && (
         <div>
           <p>Hola, {user.username}!</p>
-          <button onClick={logout}>Cerrar sesión</button>
+          <button className='logout-button' onClick={logout}>Cerrar sesión</button>
 
           <TweetForm onAddTweet={handleAddTweet} />
           <TweetList tweets={tweets} onLike={handleLike} />

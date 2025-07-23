@@ -1,42 +1,110 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #15202b;
+  color: #ffffff;
+}
+
+h1 {
+  text-align: center;
+  color: #1da1f2;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+form input[type="text"] {
+  padding: 10px;
+  font-size: 16px;
+  width: 60%;
+  border: 1px solid #38444d;
+  border-radius: 9999px;
+  background-color: #192734;
+  color: #ffffff;
+  outline: none;
+}
+
+form input[type="text"]::placeholder {
+  color: #8899a6;
+}
+
+form button {
+  background-color: transparent;
+  color: #1da1f2;
+  border: 1px solid #1da1f2;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+form button:hover {
+  background-color: #1da1f2;
+  color: #ffffff;
+}
+
+.tweet {
+  background-color: #192734;
+  border: 1px solid #38444d;
+  border-radius: 10px;
+  padding: 15px;
+  margin: 10px auto;
+  max-width: 600px;
+}
+
+.tweet p {
+  font-size: 16px;
+}
+
+.tweet button {
+  background: none;
+  border: none;
+  color: #e0245e;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.tweet button:hover {
+  color: #f45d22;
+}
+
+button {
+  font-family: inherit;
+}
+
+p {
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+button {
+  cursor: pointer;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.logout-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: transparent;
+  color: #1da1f2;
+  border: 1px solid #1da1f2;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.card {
-  padding: 2em;
+.logout-button:hover {
+  background-color: #1da1f2;
+  color: #ffffff;
 }
 
-.read-the-docs {
-  color: #888;
-}
+
